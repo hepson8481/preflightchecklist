@@ -4,131 +4,36 @@
 <meta charset="UTF-8">
 <title>Pre Flight Check DJI T50/T100</title>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <style>
-body{
-  font-family: Arial;
-  background:#0f172a;
-  margin:0;
-  padding:20px;
-}
+body{font-family:Arial;background:#0f172a;padding:20px;}
+.container{max-width:600px;margin:auto;background:#fff;padding:20px;border-radius:12px;}
+h2{text-align:center;color:#1e3a8a;}
 
-.container{
-  max-width:600px;
-  margin:20px auto;
-  background:#fff;
-  padding:20px;
-  border-radius:12px;
-}
+label{font-weight:bold;margin-top:10px;display:block;}
+input,select{width:100%;padding:10px;margin-top:5px;border-radius:8px;border:1px solid #ccc;}
 
-h2{
-  text-align:center;
-  color:#1e3a8a;
-}
-
-/* INPUT */
-label{font-weight:bold;display:block;margin-top:10px;}
-input,select{
-  width:100%;
-  padding:10px;
-  margin-top:5px;
-  border-radius:8px;
-  border:1px solid #ccc;
-}
-
-/* CHECKBOX */
-.check-group{
-  background:#f1f5f9;
-  padding:10px;
-  border-radius:10px;
-  margin-top:10px;
-}
-
-.check-group span{
-  font-weight:bold;
-  display:block;
-  margin-bottom:6px;
-}
-
-.check-options{
-  display:flex;
-  gap:6px;
-  flex-wrap:wrap;
-}
-
+.check-group{background:#f1f5f9;padding:10px;border-radius:10px;margin-top:10px;}
+.check-options{display:flex;gap:6px;}
 .check-options input{display:none;}
+.check-options label{padding:4px 10px;border:1px solid #ccc;border-radius:6px;cursor:pointer;font-size:12px;}
 
-.check-options label{
-  padding:4px 10px;
-  border-radius:6px;
-  border:1px solid #ccc;
-  font-size:12px;
-  cursor:pointer;
-  background:#fff;
-}
+.check-options input.good:checked + label{background:#22c55e;color:#fff;}
+.check-options input.bad:checked + label{background:#ef4444;color:#fff;}
 
-/* GOOD */
-.check-options input.good:checked + label.good{
-  background:#22c55e;
-  color:#fff;
-  border-color:#22c55e;
-}
+button{width:100%;margin-top:15px;padding:12px;background:#2563eb;color:#fff;border:none;border-radius:8px;}
+.pdf-btn{background:#16a34a;}
 
-/* BAD */
-.check-options input.bad:checked + label.bad{
-  background:#ef4444;
-  color:#fff;
-  border-color:#ef4444;
-}
-
-/* BUTTON */
-button{
-  width:100%;
-  margin-top:15px;
-  padding:12px;
-  border:none;
-  border-radius:8px;
-  background:#2563eb;
-  color:#fff;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-button:hover{background:#1d4ed8;}
-
-.pdf-btn{
-  background:#16a34a;
-  margin-top:10px;
-}
-
-/* DASHBOARD */
-.dashboard{
-  max-width:600px;
-  margin:20px auto;
-  background:#fff;
-  padding:15px;
-  border-radius:12px;
-}
-
-.card{
-  border:1px solid #ddd;
-  padding:10px;
-  border-radius:8px;
-  margin-top:10px;
-  font-size:12px;
-}
-
-.card img{
-  width:100%;
-  margin-top:8px;
-  border-radius:8px;
-}
+.dashboard{max-width:600px;margin:20px auto;background:#fff;padding:15px;border-radius:12px;}
+.card{border:1px solid #ddd;padding:10px;margin-top:10px;border-radius:8px;font-size:12px;}
+.card img{width:100%;margin-top:8px;border-radius:8px;}
 </style>
 </head>
 
 <body>
 
 <div class="container">
-
 <h2>Pre Flight Check DJI T50/T100</h2>
 
 <form id="form">
@@ -138,207 +43,168 @@ button:hover{background:#1d4ed8;}
 
 <label>Operator</label>
 <select id="operator">
-<option>Aziz</option>
-<option>Banu</option>
-<option>Sahrul</option>
-<option>Afridus</option>
-<option>Rikson</option>
-<option>Aqmal</option>
-<option>Kifli</option>
+<option>Aziz</option><option>Banu</option><option>Sahrul</option>
+<option>Afridus</option><option>Rikson</option><option>Aqmal</option><option>Kifli</option>
 </select>
 
-<label>Unit Code</label>
+<label>Unit</label>
 <select id="unit">
-<option>DJIT50-01</option>
-<option>DJIT50-02</option>
-<option>DJIT50-03</option>
-<option>DJIT50-04</option>
-<option>DJIT50-05</option>
-<option>DJIT50-06</option>
-<option>DJIT100-01</option>
+<option>DJIT50-01</option><option>DJIT50-02</option>
+<option>DJIT50-03</option><option>DJIT50-04</option>
+<option>DJIT50-05</option><option>DJIT50-06</option><option>DJIT100-01</option>
 </select>
 
 <label>Paddock</label>
-<input id="paddock" required>
+<input id="paddock">
 
 <label>Application</label>
-<input id="application" required>
+<input id="application">
 
 <label>Start Time</label>
 <input type="time" id="starttime">
 
-<label>Dokumentasi Foto</label>
-<input type="file" id="foto" accept="image/*">
+<label>Foto</label>
+<input type="file" id="foto">
 
-<!-- ================= CHECKLIST ================= -->
-
-<div class="check-group">
-<span>Motor & Propeller</span>
-<div class="check-options">
-<input type="radio" name="motor" id="m1" class="good"><label for="m1" class="good">Good</label>
-<input type="radio" name="motor" id="m2" class="bad"><label for="m2" class="bad">Bad</label>
-</div>
-</div>
-
-<div class="check-group">
-<span>Battery & Port</span>
-<div class="check-options">
-<input type="radio" name="battery" id="b1" class="good"><label for="b1" class="good">Good</label>
-<input type="radio" name="battery" id="b2" class="bad"><label for="b2" class="bad">Bad</label>
-</div>
-</div>
-
-<div class="check-group">
-<span>RTK</span>
-<div class="check-options">
-<input type="radio" name="rtk" id="r1" class="good"><label for="r1" class="good">Good</label>
-<input type="radio" name="rtk" id="r2" class="bad"><label for="r2" class="bad">Bad</label>
-</div>
-</div>
-
-<div class="check-group">
-<span>Tank & Flow Meter</span>
-<div class="check-options">
-<input type="radio" name="tank" id="t1" class="good"><label for="t1" class="good">Good</label>
-<input type="radio" name="tank" id="t2" class="bad"><label for="t2" class="bad">Bad</label>
-</div>
-</div>
-
-<div class="check-group">
-<span>Wheighing Sensor</span>
-<div class="check-options">
-<input type="radio" name="weigh" id="w1" class="good"><label for="w1" class="good">Good</label>
-<input type="radio" name="weigh" id="w2" class="bad"><label for="w2" class="bad">Bad</label>
-</div>
-</div>
-
-<div class="check-group">
-<span>Atomized Sprinkler</span>
-<div class="check-options">
-<input type="radio" name="sprinkler" id="s1" class="good"><label for="s1" class="good">Good</label>
-<input type="radio" name="sprinkler" id="s2" class="bad"><label for="s2" class="bad">Bad</label>
-</div>
-</div>
-
-<div class="check-group">
-<span>Parameter</span>
-<div class="check-options">
-<input type="radio" name="parameter" id="p1" class="good"><label for="p1" class="good">Good</label>
-<input type="radio" name="parameter" id="p2" class="bad"><label for="p2" class="bad">Bad</label>
-</div>
-</div>
-
-<div class="check-group">
-<span>Chemical</span>
-<div class="check-options">
-<input type="radio" name="chemical" id="c1" class="good"><label for="c1" class="good">Good</label>
-<input type="radio" name="chemical" id="c2" class="bad"><label for="c2" class="bad">Bad</label>
-</div>
-</div>
-
-<div class="check-group">
-<span>Wind Average</span>
-<div class="check-options">
-<input type="radio" name="wind" id="wi1" class="good"><label for="wi1" class="good">Good</label>
-<input type="radio" name="wind" id="wi2" class="bad"><label for="wi2" class="bad">Bad</label>
-</div>
-</div>
-
-<div class="check-group">
-<span>Obstacle</span>
-<div class="check-options">
-<input type="radio" name="obstacle" id="o1" class="good"><label for="o1" class="good">Good</label>
-<input type="radio" name="obstacle" id="o2" class="bad"><label for="o2" class="bad">Bad</label>
-</div>
-</div>
+<!-- CHECKLIST -->
+<div id="checks"></div>
 
 <button type="submit">Submit</button>
 </form>
 
 <button class="pdf-btn" onclick="exportPDF()">Export PDF</button>
-
 </div>
 
-<!-- DASHBOARD -->
 <div class="dashboard">
-<h3>Dashboard Flight Check</h3>
+<h3>Dashboard</h3>
 <div id="list"></div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
 <script>
-let dataList = JSON.parse(localStorage.getItem("flightData")) || [];
-let imageBase64 = "";
+const checkItems=[
+"Motor & Propeller","Battery & Port","RTK",
+"Tank & Flow Meter","Wheighing Sensor",
+"Atomized Sprinkler","Parameter","Chemical",
+"Wind Average","Obstacle"
+];
 
-document.getElementById("foto").addEventListener("change", function(e){
-let file = e.target.files[0];
-let reader = new FileReader();
-reader.onload = () => imageBase64 = reader.result;
-if(file) reader.readAsDataURL(file);
+/* RENDER CHECKLIST */
+let html="";
+checkItems.forEach((c,i)=>{
+html+=`
+<div class="check-group">
+<span>${c}</span>
+<div class="check-options">
+<input type="radio" name="c${i}" value="Good" class="good" id="g${i}">
+<label for="g${i}">Good</label>
+
+<input type="radio" name="c${i}" value="Bad" class="bad" id="b${i}">
+<label for="b${i}">Bad</label>
+</div>
+</div>`;
 });
+document.getElementById("checks").innerHTML=html;
 
-document.getElementById("form").addEventListener("submit", function(e){
+/* IMAGE */
+let img="";
+foto.onchange=e=>{
+let reader=new FileReader();
+reader.onload=()=>img=reader.result;
+reader.readAsDataURL(e.target.files[0]);
+};
+
+/* DATA */
+let dataList=JSON.parse(localStorage.getItem("data"))||[];
+
+form.onsubmit=e=>{
 e.preventDefault();
 
-let data = {
-tanggal: tanggal.value,
-operator: operator.value,
-unit: unit.value,
-paddock: paddock.value,
-application: application.value,
-starttime: starttime.value,
-foto: imageBase64
+let checks={};
+checkItems.forEach((c,i)=>{
+let val=document.querySelector(`input[name=c${i}]:checked`);
+checks[c]=val?val.value:"-";
+});
+
+let data={
+tanggal:tanggal.value,
+operator:operator.value,
+unit:unit.value,
+paddock:paddock.value,
+application:application.value,
+start:starttime.value,
+foto:img,
+checks
 };
 
 dataList.push(data);
-localStorage.setItem("flightData", JSON.stringify(dataList));
-
+localStorage.setItem("data",JSON.stringify(dataList));
 render();
-alert("Data tersimpan!");
-this.reset();
-imageBase64="";
-});
+form.reset();
+img="";
+alert("Tersimpan!");
+};
 
+/* DASHBOARD */
 function render(){
 let html="";
 dataList.forEach((d,i)=>{
 html+=`
 <div class="card">
 <b>${i+1}. ${d.tanggal}</b><br>
-Operator: ${d.operator}<br>
-Unit: ${d.unit}<br>
-Paddock: ${d.paddock}<br>
-Application: ${d.application}<br>
-Start: ${d.starttime || "-"}
+${d.operator} | ${d.unit}<br>
+${d.application}<br>
+${d.start}<br>
 ${d.foto?`<img src="${d.foto}">`:""}
 </div>`;
 });
-document.getElementById("list").innerHTML=html;
+list.innerHTML=html;
 }
 render();
 
-/* PDF WITH IMAGE */
+/* PDF */
 function exportPDF(){
-const { jsPDF } = window.jspdf;
-let doc = new jsPDF();
+const { jsPDF }=window.jspdf;
+let doc=new jsPDF();
 let y=10;
 
-doc.text("Pre Flight Report DJI T50/T100",10,y);
-y+=10;
+doc.setFontSize(14);
+doc.text("PRE FLIGHT CHECK REPORT",10,y); y+=6;
+doc.text("DJI T50 / T100",10,y); y+=6;
+doc.line(10,y,200,y); y+=8;
 
 dataList.forEach((d,i)=>{
-doc.text(`${i+1}. ${d.tanggal} | ${d.operator} | ${d.unit}`,10,y);
-y+=8;
-doc.text(`Paddock: ${d.paddock}`,10,y);
-y+=8;
-doc.text(`Application: ${d.application}`,10,y);
-y+=8;
-doc.text(`Start: ${d.starttime}`,10,y);
-y+=10;
+
+doc.setFontSize(10);
+doc.text(`No: ${i+1}`,10,y); y+=5;
+doc.text(`Tanggal: ${d.tanggal}`,10,y); y+=5;
+doc.text(`Operator: ${d.operator}`,10,y); y+=5;
+doc.text(`Unit: ${d.unit}`,10,y); y+=5;
+doc.text(`Paddock: ${d.paddock}`,10,y); y+=5;
+doc.text(`Application: ${d.application}`,10,y); y+=5;
+doc.text(`Start: ${d.start}`,10,y); y+=6;
+
+doc.text("Checklist:",10,y); y+=5;
+
+Object.entries(d.checks).forEach(([k,v])=>{
+let symbol = v==="Good" ? "✓" : v==="Bad" ? "✗" : "-";
+doc.text(`${k}: ${symbol} ${v}`,12,y);
+y+=5;
 });
 
-doc.save("preflight-report.pdf");
+/* IMAGE */
+if(d.foto){
+doc.addImage(d.foto,"JPEG",10,y,60,45);
+y+=50;
+}
+
+doc.line(10,y,200,y);
+y+=10;
+
+if(y>260){doc.addPage();y=10;}
+
+});
+
+doc.save("DJI_Report.pdf");
 }
 </script>
 
