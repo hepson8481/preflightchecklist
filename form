@@ -11,7 +11,7 @@
     }
 
     .container {
-      max-width: 500px;
+      max-width: 520px;
       margin: 30px auto;
       background: #fff;
       padding: 20px;
@@ -35,21 +35,24 @@
       margin-top: 5px;
     }
 
-    .check-group {
-      margin-top: 10px;
+    /* 🔥 CHECKLIST ROW */
+    .check-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
     }
 
-    .check-group span {
-      display: block;
+    .check-name {
       font-weight: bold;
-      margin-bottom: 5px;
+      font-size: 14px;
+      flex: 1;
     }
 
-    /* 🔥 UPGRADE CHECK BUTTON */
     .check-options {
       display: flex;
       gap: 6px;
-      flex-wrap: wrap;
     }
 
     .check-options input {
@@ -146,9 +149,8 @@
     <input type="text" required>
 
     <!-- CHECKLIST -->
-
-    <div class="check-group">
-      <span>Propeller Check</span>
+    <div class="check-row">
+      <div class="check-name">Propeller Check</div>
       <div class="check-options">
         <input type="radio" name="propeller" id="prop-ok" class="ok">
         <label for="prop-ok" class="ok">OK</label>
@@ -158,8 +160,8 @@
       </div>
     </div>
 
-    <div class="check-group">
-      <span>Battery Check</span>
+    <div class="check-row">
+      <div class="check-name">Battery Check</div>
       <div class="check-options">
         <input type="radio" name="battery" id="bat-ok" class="ok">
         <label for="bat-ok" class="ok">OK</label>
@@ -169,8 +171,8 @@
       </div>
     </div>
 
-    <div class="check-group">
-      <span>Mission Check</span>
+    <div class="check-row">
+      <div class="check-name">Mission Check</div>
       <div class="check-options">
         <input type="radio" name="mission" id="mis-ok" class="ok">
         <label for="mis-ok" class="ok">OK</label>
@@ -180,8 +182,8 @@
       </div>
     </div>
 
-    <div class="check-group">
-      <span>Parameter Check</span>
+    <div class="check-row">
+      <div class="check-name">Parameter Check</div>
       <div class="check-options">
         <input type="radio" name="parameter" id="par-ok" class="ok">
         <label for="par-ok" class="ok">OK</label>
@@ -191,8 +193,8 @@
       </div>
     </div>
 
-    <div class="check-group">
-      <span>RTK Check</span>
+    <div class="check-row">
+      <div class="check-name">RTK Check</div>
       <div class="check-options">
         <input type="radio" name="rtk" id="rtk-ok" class="ok">
         <label for="rtk-ok" class="ok">OK</label>
@@ -202,8 +204,8 @@
       </div>
     </div>
 
-    <div class="check-group">
-      <span>Wind Check</span>
+    <div class="check-row">
+      <div class="check-name">Wind Check</div>
       <div class="check-options">
         <input type="radio" name="wind" id="wind-ok" class="ok">
         <label for="wind-ok" class="ok">OK</label>
@@ -213,8 +215,8 @@
       </div>
     </div>
 
-    <div class="check-group">
-      <span>Tanki Check</span>
+    <div class="check-row">
+      <div class="check-name">Tanki Check</div>
       <div class="check-options">
         <input type="radio" name="tanki" id="tan-ok" class="ok">
         <label for="tan-ok" class="ok">OK</label>
@@ -224,8 +226,8 @@
       </div>
     </div>
 
-    <div class="check-group">
-      <span>Chemical Check</span>
+    <div class="check-row">
+      <div class="check-name">Chemical Check</div>
       <div class="check-options">
         <input type="radio" name="chemical" id="chem-ok" class="ok">
         <label for="chem-ok" class="ok">OK</label>
@@ -235,8 +237,8 @@
       </div>
     </div>
 
-    <div class="check-group">
-      <span>Obstacle Check</span>
+    <div class="check-row">
+      <div class="check-name">Obstacle Check</div>
       <div class="check-options">
         <input type="radio" name="obstacle" id="obs-ok" class="ok">
         <label for="obs-ok" class="ok">OK</label>
