@@ -13,7 +13,7 @@ body{
 }
 
 .container{
-  max-width:520px;
+  max-width:600px;
   margin:20px auto;
   background:#fff;
   padding:20px;
@@ -25,8 +25,8 @@ h2{
   color:#1e3a8a;
 }
 
+/* INPUT */
 label{font-weight:bold;display:block;margin-top:10px;}
-
 input,select{
   width:100%;
   padding:10px;
@@ -35,7 +35,7 @@ input,select{
   border:1px solid #ccc;
 }
 
-/* CHECK */
+/* CHECKBOX */
 .check-group{
   background:#f1f5f9;
   padding:10px;
@@ -52,6 +52,7 @@ input,select{
 .check-options{
   display:flex;
   gap:6px;
+  flex-wrap:wrap;
 }
 
 .check-options input{display:none;}
@@ -65,15 +66,15 @@ input,select{
   background:#fff;
 }
 
-/* OK */
-.check-options input.ok:checked + label.ok{
+/* GOOD */
+.check-options input.good:checked + label.good{
   background:#22c55e;
   color:#fff;
   border-color:#22c55e;
 }
 
-/* NOT OK */
-.check-options input.notok:checked + label.notok{
+/* BAD */
+.check-options input.bad:checked + label.bad{
   background:#ef4444;
   color:#fff;
   border-color:#ef4444;
@@ -91,11 +92,17 @@ button{
   font-weight:bold;
   cursor:pointer;
 }
+
 button:hover{background:#1d4ed8;}
+
+.pdf-btn{
+  background:#16a34a;
+  margin-top:10px;
+}
 
 /* DASHBOARD */
 .dashboard{
-  max-width:520px;
+  max-width:600px;
   margin:20px auto;
   background:#fff;
   padding:15px;
@@ -110,9 +117,10 @@ button:hover{background:#1d4ed8;}
   font-size:12px;
 }
 
-.pdf-btn{
-  background:#16a34a;
-  margin-top:10px;
+.card img{
+  width:100%;
+  margin-top:8px;
+  border-radius:8px;
 }
 </style>
 </head>
@@ -156,79 +164,91 @@ button:hover{background:#1d4ed8;}
 <label>Application</label>
 <input id="application" required>
 
+<label>Start Time</label>
+<input type="time" id="starttime">
+
+<label>Dokumentasi Foto</label>
+<input type="file" id="foto" accept="image/*">
+
 <!-- ================= CHECKLIST ================= -->
 
 <div class="check-group">
-<span>Propeller</span>
+<span>Motor & Propeller</span>
 <div class="check-options">
-<input type="radio" name="prop" id="p1" class="ok"><label for="p1" class="ok">OK</label>
-<input type="radio" name="prop" id="p2" class="notok"><label for="p2" class="notok">Not OK</label>
+<input type="radio" name="motor" id="m1" class="good"><label for="m1" class="good">Good</label>
+<input type="radio" name="motor" id="m2" class="bad"><label for="m2" class="bad">Bad</label>
 </div>
 </div>
 
 <div class="check-group">
-<span>Battery</span>
+<span>Battery & Port</span>
 <div class="check-options">
-<input type="radio" name="bat" id="b1" class="ok"><label for="b1" class="ok">OK</label>
-<input type="radio" name="bat" id="b2" class="notok"><label for="b2" class="notok">Not OK</label>
-</div>
-</div>
-
-<!-- 🔥 TAMBAHAN DI BAWAH BATTERY -->
-
-<div class="check-group">
-<span>Mission</span>
-<div class="check-options">
-<input type="radio" name="mission" id="m1" class="ok"><label for="m1" class="ok">OK</label>
-<input type="radio" name="mission" id="m2" class="notok"><label for="m2" class="notok">Not OK</label>
-</div>
-</div>
-
-<div class="check-group">
-<span>Parameter</span>
-<div class="check-options">
-<input type="radio" name="parameter" id="pa1" class="ok"><label for="pa1" class="ok">OK</label>
-<input type="radio" name="parameter" id="pa2" class="notok"><label for="pa2" class="notok">Not OK</label>
+<input type="radio" name="battery" id="b1" class="good"><label for="b1" class="good">Good</label>
+<input type="radio" name="battery" id="b2" class="bad"><label for="b2" class="bad">Bad</label>
 </div>
 </div>
 
 <div class="check-group">
 <span>RTK</span>
 <div class="check-options">
-<input type="radio" name="rtk" id="r1" class="ok"><label for="r1" class="ok">OK</label>
-<input type="radio" name="rtk" id="r2" class="notok"><label for="r2" class="notok">Not OK</label>
+<input type="radio" name="rtk" id="r1" class="good"><label for="r1" class="good">Good</label>
+<input type="radio" name="rtk" id="r2" class="bad"><label for="r2" class="bad">Bad</label>
 </div>
 </div>
 
 <div class="check-group">
-<span>Wind</span>
+<span>Tank & Flow Meter</span>
 <div class="check-options">
-<input type="radio" name="wind" id="w1" class="ok"><label for="w1" class="ok">OK</label>
-<input type="radio" name="wind" id="w2" class="notok"><label for="w2" class="notok">Not OK</label>
+<input type="radio" name="tank" id="t1" class="good"><label for="t1" class="good">Good</label>
+<input type="radio" name="tank" id="t2" class="bad"><label for="t2" class="bad">Bad</label>
 </div>
 </div>
 
 <div class="check-group">
-<span>Tank</span>
+<span>Wheighing Sensor</span>
 <div class="check-options">
-<input type="radio" name="tank" id="t1" class="ok"><label for="t1" class="ok">OK</label>
-<input type="radio" name="tank" id="t2" class="notok"><label for="t2" class="notok">Not OK</label>
+<input type="radio" name="weigh" id="w1" class="good"><label for="w1" class="good">Good</label>
+<input type="radio" name="weigh" id="w2" class="bad"><label for="w2" class="bad">Bad</label>
+</div>
+</div>
+
+<div class="check-group">
+<span>Atomized Sprinkler</span>
+<div class="check-options">
+<input type="radio" name="sprinkler" id="s1" class="good"><label for="s1" class="good">Good</label>
+<input type="radio" name="sprinkler" id="s2" class="bad"><label for="s2" class="bad">Bad</label>
+</div>
+</div>
+
+<div class="check-group">
+<span>Parameter</span>
+<div class="check-options">
+<input type="radio" name="parameter" id="p1" class="good"><label for="p1" class="good">Good</label>
+<input type="radio" name="parameter" id="p2" class="bad"><label for="p2" class="bad">Bad</label>
 </div>
 </div>
 
 <div class="check-group">
 <span>Chemical</span>
 <div class="check-options">
-<input type="radio" name="chemical" id="c1" class="ok"><label for="c1" class="ok">OK</label>
-<input type="radio" name="chemical" id="c2" class="notok"><label for="c2" class="notok">Not OK</label>
+<input type="radio" name="chemical" id="c1" class="good"><label for="c1" class="good">Good</label>
+<input type="radio" name="chemical" id="c2" class="bad"><label for="c2" class="bad">Bad</label>
+</div>
+</div>
+
+<div class="check-group">
+<span>Wind Average</span>
+<div class="check-options">
+<input type="radio" name="wind" id="wi1" class="good"><label for="wi1" class="good">Good</label>
+<input type="radio" name="wind" id="wi2" class="bad"><label for="wi2" class="bad">Bad</label>
 </div>
 </div>
 
 <div class="check-group">
 <span>Obstacle</span>
 <div class="check-options">
-<input type="radio" name="obstacle" id="o1" class="ok"><label for="o1" class="ok">OK</label>
-<input type="radio" name="obstacle" id="o2" class="notok"><label for="o2" class="notok">Not OK</label>
+<input type="radio" name="obstacle" id="o1" class="good"><label for="o1" class="good">Good</label>
+<input type="radio" name="obstacle" id="o2" class="bad"><label for="o2" class="bad">Bad</label>
 </div>
 </div>
 
@@ -249,6 +269,14 @@ button:hover{background:#1d4ed8;}
 
 <script>
 let dataList = JSON.parse(localStorage.getItem("flightData")) || [];
+let imageBase64 = "";
+
+document.getElementById("foto").addEventListener("change", function(e){
+let file = e.target.files[0];
+let reader = new FileReader();
+reader.onload = () => imageBase64 = reader.result;
+if(file) reader.readAsDataURL(file);
+});
 
 document.getElementById("form").addEventListener("submit", function(e){
 e.preventDefault();
@@ -258,7 +286,9 @@ tanggal: tanggal.value,
 operator: operator.value,
 unit: unit.value,
 paddock: paddock.value,
-application: application.value
+application: application.value,
+starttime: starttime.value,
+foto: imageBase64
 };
 
 dataList.push(data);
@@ -267,43 +297,48 @@ localStorage.setItem("flightData", JSON.stringify(dataList));
 render();
 alert("Data tersimpan!");
 this.reset();
+imageBase64="";
 });
 
 function render(){
-let html = "";
+let html="";
 dataList.forEach((d,i)=>{
-html += `
+html+=`
 <div class="card">
 <b>${i+1}. ${d.tanggal}</b><br>
 Operator: ${d.operator}<br>
 Unit: ${d.unit}<br>
 Paddock: ${d.paddock}<br>
-Application: ${d.application}
+Application: ${d.application}<br>
+Start: ${d.starttime || "-"}
+${d.foto?`<img src="${d.foto}">`:""}
 </div>`;
 });
-document.getElementById("list").innerHTML = html;
+document.getElementById("list").innerHTML=html;
 }
 render();
 
-/* PDF EXPORT */
+/* PDF WITH IMAGE */
 function exportPDF(){
 const { jsPDF } = window.jspdf;
 let doc = new jsPDF();
+let y=10;
 
-let y = 10;
-doc.text("Laporan Pre Flight DJI T50/T100",10,y);
-y += 10;
+doc.text("Pre Flight Report DJI T50/T100",10,y);
+y+=10;
 
 dataList.forEach((d,i)=>{
 doc.text(`${i+1}. ${d.tanggal} | ${d.operator} | ${d.unit}`,10,y);
-y += 8;
+y+=8;
 doc.text(`Paddock: ${d.paddock}`,10,y);
-y += 8;
+y+=8;
 doc.text(`Application: ${d.application}`,10,y);
-y += 10;
+y+=8;
+doc.text(`Start: ${d.starttime}`,10,y);
+y+=10;
 });
 
-doc.save("laporan-flight-check.pdf");
+doc.save("preflight-report.pdf");
 }
 </script>
 
