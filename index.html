@@ -1,264 +1,310 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Pre Flight Check DJI T50</title>
+<meta charset="UTF-8">
+<title>Pre Flight Check DJI T50/T100</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-    }
+<style>
+body{
+  font-family: Arial;
+  background:#0f172a;
+  margin:0;
+  padding:20px;
+}
 
-    .container {
-      max-width: 520px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
+.container{
+  max-width:520px;
+  margin:20px auto;
+  background:#fff;
+  padding:20px;
+  border-radius:12px;
+}
 
-    h2 {
-      text-align: center;
-    }
+h2{
+  text-align:center;
+  color:#1e3a8a;
+}
 
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
+label{font-weight:bold;display:block;margin-top:10px;}
 
-    input, select {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-    }
+input,select{
+  width:100%;
+  padding:10px;
+  margin-top:5px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
 
-    /* 🔥 CHECKLIST ROW */
-    .check-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid #eee;
-    }
+/* CHECK */
+.check-group{
+  background:#f1f5f9;
+  padding:10px;
+  border-radius:10px;
+  margin-top:10px;
+}
 
-    .check-name {
-      font-weight: bold;
-      font-size: 14px;
-      flex: 1;
-    }
+.check-group span{
+  font-weight:bold;
+  display:block;
+  margin-bottom:6px;
+}
 
-    .check-options {
-      display: flex;
-      gap: 6px;
-    }
+.check-options{
+  display:flex;
+  gap:6px;
+}
 
-    .check-options input {
-      display: none;
-    }
+.check-options input{display:none;}
 
-    .check-options label {
-      padding: 4px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 12px;
-      border: 1px solid #ccc;
-      user-select: none;
-      transition: 0.2s;
-    }
+.check-options label{
+  padding:4px 10px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  font-size:12px;
+  cursor:pointer;
+  background:#fff;
+}
 
-    /* OK = HIJAU */
-    .check-options input.ok:checked + label.ok {
-      background: #28a745;
-      color: white;
-      border-color: #28a745;
-    }
+/* OK */
+.check-options input.ok:checked + label.ok{
+  background:#22c55e;
+  color:#fff;
+  border-color:#22c55e;
+}
 
-    /* NOT OK = MERAH */
-    .check-options input.notok:checked + label.notok {
-      background: #dc3545;
-      color: white;
-      border-color: #dc3545;
-    }
+/* NOT OK */
+.check-options input.notok:checked + label.notok{
+  background:#ef4444;
+  color:#fff;
+  border-color:#ef4444;
+}
 
-    button {
-      margin-top: 20px;
-      width: 100%;
-      padding: 10px;
-      background: green;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 6px;
-    }
+/* BUTTON */
+button{
+  width:100%;
+  margin-top:15px;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  background:#2563eb;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+}
+button:hover{background:#1d4ed8;}
 
-    button:hover {
-      background: darkgreen;
-    }
+/* DASHBOARD */
+.dashboard{
+  max-width:520px;
+  margin:20px auto;
+  background:#fff;
+  padding:15px;
+  border-radius:12px;
+}
 
-    #result {
-      margin-top: 15px;
-      color: green;
-      font-weight: bold;
-      text-align: center;
-    }
-  </style>
+.card{
+  border:1px solid #ddd;
+  padding:10px;
+  border-radius:8px;
+  margin-top:10px;
+  font-size:12px;
+}
+
+.pdf-btn{
+  background:#16a34a;
+  margin-top:10px;
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
-  <h2>Pre Flight Check DJI T50</h2>
 
-  <form id="flightForm">
+<h2>Pre Flight Check DJI T50/T100</h2>
 
-    <label>Tanggal</label>
-    <input type="date" required>
+<form id="form">
 
-    <label>Nama Operator</label>
-    <select required>
-      <option value="">Pilih</option>
-      <option>Aziz</option>
-      <option>Banu</option>
-      <option>Sahrul</option>
-      <option>Afridus</option>
-      <option>Rikson</option>
-      <option>Aqmal</option>
-      <option>Kifli</option>
-    </select>
+<label>Tanggal</label>
+<input id="tanggal" type="date" required>
 
-    <label>Unit Code</label>
-    <select required>
-      <option value="">Pilih</option>
-      <option>DJIT50-01</option>
-      <option>DJIT50-02</option>
-      <option>DJIT50-03</option>
-      <option>DJIT50-04</option>
-      <option>DJIT50-05</option>
-      <option>DJIT50-06</option>
-      <option>DJIT100-01</option>
-    </select>
+<label>Operator</label>
+<select id="operator">
+<option>Aziz</option>
+<option>Banu</option>
+<option>Sahrul</option>
+<option>Afridus</option>
+<option>Rikson</option>
+<option>Aqmal</option>
+<option>Kifli</option>
+</select>
 
-    <label>Paddock</label>
-    <input type="text" required>
+<label>Unit Code</label>
+<select id="unit">
+<option>DJIT50-01</option>
+<option>DJIT50-02</option>
+<option>DJIT50-03</option>
+<option>DJIT50-04</option>
+<option>DJIT50-05</option>
+<option>DJIT50-06</option>
+<option>DJIT100-01</option>
+</select>
 
-    <label>Kegiatan</label>
-    <input type="text" required>
+<label>Paddock</label>
+<input id="paddock" required>
 
-    <!-- CHECKLIST -->
-    <div class="check-row">
-      <div class="check-name">Propeller Check</div>
-      <div class="check-options">
-        <input type="radio" name="propeller" id="prop-ok" class="ok">
-        <label for="prop-ok" class="ok">OK</label>
+<label>Application</label>
+<input id="application" required>
 
-        <input type="radio" name="propeller" id="prop-no" class="notok">
-        <label for="prop-no" class="notok">Not OK</label>
-      </div>
-    </div>
+<!-- ================= CHECKLIST ================= -->
 
-    <div class="check-row">
-      <div class="check-name">Battery Check</div>
-      <div class="check-options">
-        <input type="radio" name="battery" id="bat-ok" class="ok">
-        <label for="bat-ok" class="ok">OK</label>
-
-        <input type="radio" name="battery" id="bat-no" class="notok">
-        <label for="bat-no" class="notok">Not OK</label>
-      </div>
-    </div>
-
-    <div class="check-row">
-      <div class="check-name">Mission Check</div>
-      <div class="check-options">
-        <input type="radio" name="mission" id="mis-ok" class="ok">
-        <label for="mis-ok" class="ok">OK</label>
-
-        <input type="radio" name="mission" id="mis-no" class="notok">
-        <label for="mis-no" class="notok">Not OK</label>
-      </div>
-    </div>
-
-    <div class="check-row">
-      <div class="check-name">Parameter Check</div>
-      <div class="check-options">
-        <input type="radio" name="parameter" id="par-ok" class="ok">
-        <label for="par-ok" class="ok">OK</label>
-
-        <input type="radio" name="parameter" id="par-no" class="notok">
-        <label for="par-no" class="notok">Not OK</label>
-      </div>
-    </div>
-
-    <div class="check-row">
-      <div class="check-name">RTK Check</div>
-      <div class="check-options">
-        <input type="radio" name="rtk" id="rtk-ok" class="ok">
-        <label for="rtk-ok" class="ok">OK</label>
-
-        <input type="radio" name="rtk" id="rtk-no" class="notok">
-        <label for="rtk-no" class="notok">Not OK</label>
-      </div>
-    </div>
-
-    <div class="check-row">
-      <div class="check-name">Wind Check</div>
-      <div class="check-options">
-        <input type="radio" name="wind" id="wind-ok" class="ok">
-        <label for="wind-ok" class="ok">OK</label>
-
-        <input type="radio" name="wind" id="wind-no" class="notok">
-        <label for="wind-no" class="notok">Not OK</label>
-      </div>
-    </div>
-
-    <div class="check-row">
-      <div class="check-name">Tanki Check</div>
-      <div class="check-options">
-        <input type="radio" name="tanki" id="tan-ok" class="ok">
-        <label for="tan-ok" class="ok">OK</label>
-
-        <input type="radio" name="tanki" id="tan-no" class="notok">
-        <label for="tan-no" class="notok">Not OK</label>
-      </div>
-    </div>
-
-    <div class="check-row">
-      <div class="check-name">Chemical Check</div>
-      <div class="check-options">
-        <input type="radio" name="chemical" id="chem-ok" class="ok">
-        <label for="chem-ok" class="ok">OK</label>
-
-        <input type="radio" name="chemical" id="chem-no" class="notok">
-        <label for="chem-no" class="notok">Not OK</label>
-      </div>
-    </div>
-
-    <div class="check-row">
-      <div class="check-name">Obstacle Check</div>
-      <div class="check-options">
-        <input type="radio" name="obstacle" id="obs-ok" class="ok">
-        <label for="obs-ok" class="ok">OK</label>
-
-        <input type="radio" name="obstacle" id="obs-no" class="notok">
-        <label for="obs-no" class="notok">Not OK</label>
-      </div>
-    </div>
-
-    <button type="submit">Submit</button>
-  </form>
-
-  <div id="result"></div>
+<div class="check-group">
+<span>Propeller</span>
+<div class="check-options">
+<input type="radio" name="prop" id="p1" class="ok"><label for="p1" class="ok">OK</label>
+<input type="radio" name="prop" id="p2" class="notok"><label for="p2" class="notok">Not OK</label>
+</div>
 </div>
 
+<div class="check-group">
+<span>Battery</span>
+<div class="check-options">
+<input type="radio" name="bat" id="b1" class="ok"><label for="b1" class="ok">OK</label>
+<input type="radio" name="bat" id="b2" class="notok"><label for="b2" class="notok">Not OK</label>
+</div>
+</div>
+
+<!-- 🔥 TAMBAHAN DI BAWAH BATTERY -->
+
+<div class="check-group">
+<span>Mission</span>
+<div class="check-options">
+<input type="radio" name="mission" id="m1" class="ok"><label for="m1" class="ok">OK</label>
+<input type="radio" name="mission" id="m2" class="notok"><label for="m2" class="notok">Not OK</label>
+</div>
+</div>
+
+<div class="check-group">
+<span>Parameter</span>
+<div class="check-options">
+<input type="radio" name="parameter" id="pa1" class="ok"><label for="pa1" class="ok">OK</label>
+<input type="radio" name="parameter" id="pa2" class="notok"><label for="pa2" class="notok">Not OK</label>
+</div>
+</div>
+
+<div class="check-group">
+<span>RTK</span>
+<div class="check-options">
+<input type="radio" name="rtk" id="r1" class="ok"><label for="r1" class="ok">OK</label>
+<input type="radio" name="rtk" id="r2" class="notok"><label for="r2" class="notok">Not OK</label>
+</div>
+</div>
+
+<div class="check-group">
+<span>Wind</span>
+<div class="check-options">
+<input type="radio" name="wind" id="w1" class="ok"><label for="w1" class="ok">OK</label>
+<input type="radio" name="wind" id="w2" class="notok"><label for="w2" class="notok">Not OK</label>
+</div>
+</div>
+
+<div class="check-group">
+<span>Tank</span>
+<div class="check-options">
+<input type="radio" name="tank" id="t1" class="ok"><label for="t1" class="ok">OK</label>
+<input type="radio" name="tank" id="t2" class="notok"><label for="t2" class="notok">Not OK</label>
+</div>
+</div>
+
+<div class="check-group">
+<span>Chemical</span>
+<div class="check-options">
+<input type="radio" name="chemical" id="c1" class="ok"><label for="c1" class="ok">OK</label>
+<input type="radio" name="chemical" id="c2" class="notok"><label for="c2" class="notok">Not OK</label>
+</div>
+</div>
+
+<div class="check-group">
+<span>Obstacle</span>
+<div class="check-options">
+<input type="radio" name="obstacle" id="o1" class="ok"><label for="o1" class="ok">OK</label>
+<input type="radio" name="obstacle" id="o2" class="notok"><label for="o2" class="notok">Not OK</label>
+</div>
+</div>
+
+<button type="submit">Submit</button>
+</form>
+
+<button class="pdf-btn" onclick="exportPDF()">Export PDF</button>
+
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard">
+<h3>Dashboard Flight Check</h3>
+<div id="list"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <script>
-  document.getElementById("flightForm").addEventListener("submit", function(e){
-    e.preventDefault();
-    document.getElementById("result").innerText = "Data berhasil disimpan!";
-  });
+let dataList = JSON.parse(localStorage.getItem("flightData")) || [];
+
+document.getElementById("form").addEventListener("submit", function(e){
+e.preventDefault();
+
+let data = {
+tanggal: tanggal.value,
+operator: operator.value,
+unit: unit.value,
+paddock: paddock.value,
+application: application.value
+};
+
+dataList.push(data);
+localStorage.setItem("flightData", JSON.stringify(dataList));
+
+render();
+alert("Data tersimpan!");
+this.reset();
+});
+
+function render(){
+let html = "";
+dataList.forEach((d,i)=>{
+html += `
+<div class="card">
+<b>${i+1}. ${d.tanggal}</b><br>
+Operator: ${d.operator}<br>
+Unit: ${d.unit}<br>
+Paddock: ${d.paddock}<br>
+Application: ${d.application}
+</div>`;
+});
+document.getElementById("list").innerHTML = html;
+}
+render();
+
+/* PDF EXPORT */
+function exportPDF(){
+const { jsPDF } = window.jspdf;
+let doc = new jsPDF();
+
+let y = 10;
+doc.text("Laporan Pre Flight DJI T50/T100",10,y);
+y += 10;
+
+dataList.forEach((d,i)=>{
+doc.text(`${i+1}. ${d.tanggal} | ${d.operator} | ${d.unit}`,10,y);
+y += 8;
+doc.text(`Paddock: ${d.paddock}`,10,y);
+y += 8;
+doc.text(`Application: ${d.application}`,10,y);
+y += 10;
+});
+
+doc.save("laporan-flight-check.pdf");
+}
 </script>
 
 </body>
