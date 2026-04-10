@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Pre Flight Check DJI T50</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+    }
+    .container {
+      max-width: 500px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    .check-group {
+      margin-top: 10px;
+    }
+    .check-group span {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .check-options {
+      display: flex;
+      gap: 20px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: darkgreen;
+    }
+    #result {
+      margin-top: 15px;
+      color: green;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Pre Flight Check DJI T50</h2>
+
+  <form id="flightForm">
+
+    <label>Tanggal</label>
+    <input type="date" required>
+
+    <label>Nama Operator</label>
+    <select required>
+      <option value="">Pilih</option>
+      <option>Aziz</option>
+      <option>Banu</option>
+      <option>Sahrul</option>
+      <option>Afridus</option>
+      <option>Rikson</option>
+      <option>Aqmal</option>
+      <option>Kifli</option>
+    </select>
+
+    <label>Unit Code</label>
+    <select required>
+      <option value="">Pilih</option>
+      <option>DJIT50-01</option>
+      <option>DJIT50-02</option>
+      <option>DJIT50-03</option>
+      <option>DJIT50-04</option>
+      <option>DJIT50-05</option>
+      <option>DJIT50-06</option>
+      <option>DJIT100-01</option>
+    </select>
+
+    <label>Paddock</label>
+    <input type="text" required>
+
+    <label>Kegiatan</label>
+    <input type="text" required>
+
+    <!-- Checklist -->
+    <div class="check-group">
+      <span>Propeller Check</span>
+      <div class="check-options">
+        <label><input type="radio" name="propeller"> OK</label>
+        <label><input type="radio" name="propeller"> Not OK</label>
+      </div>
+    </div>
+
+    <div class="check-group">
+      <span>Battery Check</span>
+      <div class="check-options">
+        <label><input type="radio" name="battery"> OK</label>
+        <label><input type="radio" name="battery"> Not OK</label>
+      </div>
+    </div>
+
+    <div class="check-group">
+      <span>Mission Check</span>
+      <div class="check-options">
+        <label><input type="radio" name="mission"> OK</label>
+        <label><input type="radio" name="mission"> Not OK</label>
+      </div>
+    </div>
+
+    <div class="check-group">
+      <span>Parameter Check</span>
+      <div class="check-options">
+        <label><input type="radio" name="parameter"> OK</label>
+        <label><input type="radio" name="parameter"> Not OK</label>
+      </div>
+    </div>
+
+    <div class="check-group">
+      <span>RTK Check</span>
+      <div class="check-options">
+        <label><input type="radio" name="rtk"> OK</label>
+        <label><input type="radio" name="rtk"> Not OK</label>
+      </div>
+    </div>
+
+    <div class="check-group">
+      <span>Wind Check</span>
+      <div class="check-options">
+        <label><input type="radio" name="wind"> OK</label>
+        <label><input type="radio" name="wind"> Not OK</label>
+      </div>
+    </div>
+
+    <div class="check-group">
+      <span>Tanki Check</span>
+      <div class="check-options">
+        <label><input type="radio" name="tanki"> OK</label>
+        <label><input type="radio" name="tanki"> Not OK</label>
+      </div>
+    </div>
+
+    <div class="check-group">
+      <span>Chemical Check</span>
+      <div class="check-options">
+        <label><input type="radio" name="chemical"> OK</label>
+        <label><input type="radio" name="chemical"> Not OK</label>
+      </div>
+    </div>
+
+    <div class="check-group">
+      <span>Obstacle Check</span>
+      <div class="check-options">
+        <label><input type="radio" name="obstacle"> OK</label>
+        <label><input type="radio" name="obstacle"> Not OK</label>
+      </div>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="result"></div>
+</div>
+
+<script>
+  document.getElementById("flightForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    document.getElementById("result").innerText = "Data berhasil disimpan!";
+  });
+</script>
+
+</body>
+</html>
