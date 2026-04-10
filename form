@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Pre Flight Check DJI T50</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
       background: #f2f2f2;
     }
+
     .container {
       max-width: 500px;
       margin: 30px auto;
@@ -16,31 +18,69 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+
     h2 {
       text-align: center;
     }
+
     label {
       display: block;
       margin-top: 10px;
       font-weight: bold;
     }
+
     input, select {
       width: 100%;
       padding: 8px;
       margin-top: 5px;
     }
+
     .check-group {
       margin-top: 10px;
     }
+
     .check-group span {
       display: block;
       font-weight: bold;
       margin-bottom: 5px;
     }
+
+    /* 🔥 UPGRADE CHECK BUTTON */
     .check-options {
       display: flex;
-      gap: 20px;
+      gap: 6px;
+      flex-wrap: wrap;
     }
+
+    .check-options input {
+      display: none;
+    }
+
+    .check-options label {
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 12px;
+      border: 1px solid #ccc;
+      user-select: none;
+      transition: 0.2s;
+    }
+
+    /* OK = HIJAU */
+    .check-options input.ok:checked + label.ok {
+      background: #28a745;
+      color: white;
+      border-color: #28a745;
+    }
+
+    /* NOT OK = MERAH */
+    .check-options input.notok:checked + label.notok {
+      background: #dc3545;
+      color: white;
+      border-color: #dc3545;
+    }
+
     button {
       margin-top: 20px;
       width: 100%;
@@ -49,10 +89,13 @@
       color: white;
       border: none;
       cursor: pointer;
+      border-radius: 6px;
     }
+
     button:hover {
       background: darkgreen;
     }
+
     #result {
       margin-top: 15px;
       color: green;
@@ -61,6 +104,7 @@
     }
   </style>
 </head>
+
 <body>
 
 <div class="container">
@@ -101,76 +145,104 @@
     <label>Kegiatan</label>
     <input type="text" required>
 
-    <!-- Checklist -->
+    <!-- CHECKLIST -->
+
     <div class="check-group">
       <span>Propeller Check</span>
       <div class="check-options">
-        <label><input type="radio" name="propeller"> OK</label>
-        <label><input type="radio" name="propeller"> Not OK</label>
+        <input type="radio" name="propeller" id="prop-ok" class="ok">
+        <label for="prop-ok" class="ok">OK</label>
+
+        <input type="radio" name="propeller" id="prop-no" class="notok">
+        <label for="prop-no" class="notok">Not OK</label>
       </div>
     </div>
 
     <div class="check-group">
       <span>Battery Check</span>
       <div class="check-options">
-        <label><input type="radio" name="battery"> OK</label>
-        <label><input type="radio" name="battery"> Not OK</label>
+        <input type="radio" name="battery" id="bat-ok" class="ok">
+        <label for="bat-ok" class="ok">OK</label>
+
+        <input type="radio" name="battery" id="bat-no" class="notok">
+        <label for="bat-no" class="notok">Not OK</label>
       </div>
     </div>
 
     <div class="check-group">
       <span>Mission Check</span>
       <div class="check-options">
-        <label><input type="radio" name="mission"> OK</label>
-        <label><input type="radio" name="mission"> Not OK</label>
+        <input type="radio" name="mission" id="mis-ok" class="ok">
+        <label for="mis-ok" class="ok">OK</label>
+
+        <input type="radio" name="mission" id="mis-no" class="notok">
+        <label for="mis-no" class="notok">Not OK</label>
       </div>
     </div>
 
     <div class="check-group">
       <span>Parameter Check</span>
       <div class="check-options">
-        <label><input type="radio" name="parameter"> OK</label>
-        <label><input type="radio" name="parameter"> Not OK</label>
+        <input type="radio" name="parameter" id="par-ok" class="ok">
+        <label for="par-ok" class="ok">OK</label>
+
+        <input type="radio" name="parameter" id="par-no" class="notok">
+        <label for="par-no" class="notok">Not OK</label>
       </div>
     </div>
 
     <div class="check-group">
       <span>RTK Check</span>
       <div class="check-options">
-        <label><input type="radio" name="rtk"> OK</label>
-        <label><input type="radio" name="rtk"> Not OK</label>
+        <input type="radio" name="rtk" id="rtk-ok" class="ok">
+        <label for="rtk-ok" class="ok">OK</label>
+
+        <input type="radio" name="rtk" id="rtk-no" class="notok">
+        <label for="rtk-no" class="notok">Not OK</label>
       </div>
     </div>
 
     <div class="check-group">
       <span>Wind Check</span>
       <div class="check-options">
-        <label><input type="radio" name="wind"> OK</label>
-        <label><input type="radio" name="wind"> Not OK</label>
+        <input type="radio" name="wind" id="wind-ok" class="ok">
+        <label for="wind-ok" class="ok">OK</label>
+
+        <input type="radio" name="wind" id="wind-no" class="notok">
+        <label for="wind-no" class="notok">Not OK</label>
       </div>
     </div>
 
     <div class="check-group">
       <span>Tanki Check</span>
       <div class="check-options">
-        <label><input type="radio" name="tanki"> OK</label>
-        <label><input type="radio" name="tanki"> Not OK</label>
+        <input type="radio" name="tanki" id="tan-ok" class="ok">
+        <label for="tan-ok" class="ok">OK</label>
+
+        <input type="radio" name="tanki" id="tan-no" class="notok">
+        <label for="tan-no" class="notok">Not OK</label>
       </div>
     </div>
 
     <div class="check-group">
       <span>Chemical Check</span>
       <div class="check-options">
-        <label><input type="radio" name="chemical"> OK</label>
-        <label><input type="radio" name="chemical"> Not OK</label>
+        <input type="radio" name="chemical" id="chem-ok" class="ok">
+        <label for="chem-ok" class="ok">OK</label>
+
+        <input type="radio" name="chemical" id="chem-no" class="notok">
+        <label for="chem-no" class="notok">Not OK</label>
       </div>
     </div>
 
     <div class="check-group">
       <span>Obstacle Check</span>
       <div class="check-options">
-        <label><input type="radio" name="obstacle"> OK</label>
-        <label><input type="radio" name="obstacle"> Not OK</label>
+        <input type="radio" name="obstacle" id="obs-ok" class="ok">
+        <label for="obs-ok" class="ok">OK</label>
+
+        <input type="radio" name="obstacle" id="obs-no" class="notok">
+        <label for="obs-no" class="notok">Not OK</label>
       </div>
     </div>
 
